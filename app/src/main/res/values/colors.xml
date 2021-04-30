@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#1e6fff</color>
+    <color name="touming">#00ff5434</color>
+    <color name="green">#12de6f</color>
+    <color name="blue">#1e6fff</color>
+    <color name="cheng">#ff7f50</color>
+    <color name="green1">#7cc23b</color>
+    <color name="purple">#5d42a3</color>
+    <color name="green2">#1fbba6</color>
+    <color name="black">#161718</color>
+    <color name="white">#fff</color>
+    <color name="colorOverlay">#78ffffff</color>
+    <color name="grey">#A9A9A9</color>
+    <color name="red">#DA0404</color>
+</resources>

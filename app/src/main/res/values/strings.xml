@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">二手交易</string>
+    <string name="title_home">主页</string>
+    <string name="title_sort">分类</string>
+    <string name="title_publish">发布商品</string>
+    <string name="title_message">消息</string>
+    <string name="title_my">我的</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">LOGIN</string>
+    <string name="prompt_sign">SIGN</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">Please input your username</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="login_success">login success</string>
+    <string name="login">LOGIN</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="forgot_your_password">Forgot your password ?</string>
+    <string name="go">GO</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="next">NEXT</string>
+    <string name="register">REGISTER</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+
+    <string name="action_settings">Settings</string>
+
+
+</resources>
