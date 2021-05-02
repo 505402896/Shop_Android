@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         tv_user = (AutoCompleteTextView) findViewById(R.id.tv_user);
         populateAutoComplete();
-
+        
         tv_forget = (TextView)findViewById(R.id.tv_forget);
         tv_forget.setOnClickListener(new OnClickListener() {
             @Override

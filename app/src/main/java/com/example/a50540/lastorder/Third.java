@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentUris;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -27,11 +28,13 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.a50540.lastorder.adapter.FirstAdapter;
 import com.example.a50540.lastorder.util.Common;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
@@ -40,8 +43,10 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -53,12 +58,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class Third extends Fragment {
 
-
-    public static int ALBUM_RESULT_CODE = 0x999 ;
     ImageView imageButton;
+
     EditText m1_title,m1_price,m1_phone,m1_detail;
     QMUIRoundButton third_btn_publish;
     public byte[] image;
@@ -91,12 +97,17 @@ public class Third extends Fragment {
         m1_detail = (EditText)view.findViewById(R.id.m1_detail);
         m1_phone = (EditText)view.findViewById(R.id.m1_phone);
 
+
+
+
+
         third_btn_publish = (QMUIRoundButton)view.findViewById(R.id.third_btn_publish);
         third_btn_publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 File file = new File(path);
                 fileName = file.getName();
+
                 publishImg(file);
                 publishContent(fileName);
             }
@@ -124,6 +135,9 @@ public class Third extends Fragment {
     private void publishContent(String fileName) {
         MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         String url = Common.SERVER_URL +"/goods/getGoodsInfo";
+        //获取存储在内存中的用户id
+        SharedPreferences pref = getActivity().getSharedPreferences("data",MODE_PRIVATE);
+        int uid = pref.getInt("uid",0);
 
         Map<String,Object> map = new HashMap<>();
         map.put("title",m1_title.getText().toString());
@@ -132,6 +146,8 @@ public class Third extends Fragment {
         map.put("phone",m1_phone.getText().toString());
         map.put("detail",m1_detail.getText().toString());
         map.put("pic",fileName);
+        map.put("uid",uid);
+
 
         JSONObject jsonObject = new JSONObject(map);
 
@@ -194,6 +210,7 @@ public class Third extends Fragment {
         Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
         imageButton.setImageBitmap(bitmap);
     }
+
 
 
 }
