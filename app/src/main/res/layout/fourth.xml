@@ -21,6 +21,7 @@
             android:orientation="horizontal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:id="@+id/fourth_chat_item"
             >
         <com.qmuiteam.qmui.widget.QMUIRadiusImageView
                 android:layout_width="60dp"

@@ -148,11 +148,10 @@ public class Third extends Fragment {
         map.put("pic",fileName);
         map.put("uid",uid);
 
-
         JSONObject jsonObject = new JSONObject(map);
 
         RequestBody requestBody = RequestBody.create(JSON,jsonObject.toString());
-        Request request = new Request.Builder().url(url).post(requestBody).build();
+        final Request request = new Request.Builder().url(url).post(requestBody).build();
         OkHttpClient okHttpClient = new OkHttpClient();
         Call call = okHttpClient.newCall(request);
         call.enqueue(new Callback() {
@@ -163,7 +162,7 @@ public class Third extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
+                Toast.makeText(getActivity(),response.body().string(),Toast.LENGTH_SHORT).show();
             }
         });
     }

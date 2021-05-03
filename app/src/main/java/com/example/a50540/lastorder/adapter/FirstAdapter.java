@@ -1,6 +1,7 @@
 package com.example.a50540.lastorder.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,9 +9,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.a50540.lastorder.GoodDetailActivity;
+import com.example.a50540.lastorder.LoginActivity;
+import com.example.a50540.lastorder.MainActivity;
 import com.example.a50540.lastorder.R;
 import com.example.a50540.lastorder.util.AsyncBitmapLoader;
+import com.example.a50540.lastorder.util.Common;
 
 import java.util.List;
 import java.util.Map;
@@ -44,7 +50,7 @@ public class FirstAdapter extends BaseAdapter {
   }
 
   @Override
-  public View getView(int i, View view, ViewGroup viewGroup) {
+  public View getView(final int i, View view, ViewGroup viewGroup) {
     LayoutInflater inflater = LayoutInflater.from(context);
     ViewHolder holder = new ViewHolder();
     if (view == null) {
@@ -57,7 +63,7 @@ public class FirstAdapter extends BaseAdapter {
     } else {
       holder = (ViewHolder) view.getTag();
     }
-      String imageURL = list.get(i).get("pic").toString();
+      String imageURL = Common.IMAGE_BASE_PATH + list.get(i).get("pic").toString();
       Bitmap bitmap=asyncBitmapLoader.loadBitmap(holder.good, imageURL, new AsyncBitmapLoader.ImageCallBack() {
         @Override
         public void imageLoad(ImageView imageView, Bitmap bitmap) {
@@ -75,6 +81,15 @@ public class FirstAdapter extends BaseAdapter {
     }
     holder.title.setText(list.get(i).get("title").toString());
     holder.price.setText(list.get(i).get("price").toString());
+
+    holder.good.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Toast.makeText(context,i+"被点击了",Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(context, GoodDetailActivity.class);
+        context.startActivity(intent);
+      }
+    });
     return view;
   }
 

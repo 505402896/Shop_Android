@@ -69,6 +69,8 @@ public class First extends Fragment {
                         // 当搜索结果不为空时  返回搜索数据
                         list.clear();
                         list.add(map);
+                    } else {
+                        Toast.makeText(getActivity(),"暂无搜索结果",Toast.LENGTH_SHORT).show();
                     }
                 }
                 firstAdapter.notifyDataSetChanged();
@@ -135,6 +137,7 @@ public class First extends Fragment {
                             map.put("title", jsonArray.getJSONObject(i).get("title"));
                             map.put("price", jsonArray.getJSONObject(i).get("price"));
                             list.add(map);
+                            System.out.println(list);
                         }
                     }catch (JSONException e) {
                         Log.d("",e.getMessage());

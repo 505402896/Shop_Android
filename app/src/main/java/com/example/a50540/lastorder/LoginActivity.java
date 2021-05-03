@@ -198,6 +198,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     bundle.putSerializable("result",result);
                     msg.setData(bundle);
                     msg.what = 1;
+                    msg.obj = jsonObject.getJSONObject("data").getString("name");
                     handler.sendMessage(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -220,6 +221,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                         SharedPreferences sharedPreferences = getSharedPreferences("data", Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putInt("uid",(Integer) result.getData());
+                        editor.putString("username",tv_user.getText().toString());
+                        editor.putString("name",msg.obj.toString());
                         editor.commit();
 //                        跳转页面
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);

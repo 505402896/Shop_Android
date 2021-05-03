@@ -14,5 +14,6 @@
     <color name="white">#fff</color>
     <color name="colorOverlay">#78ffffff</color>
     <color name="grey">#A9A9A9</color>
+    <color name="light_grey">#F3F5F8</color>
     <color name="red">#DA0404</color>
 </resources>
