@@ -34,7 +34,7 @@ public class AsyncBitmapLoader {
       }
     } else {
       /**
-       * 加上一个对本地缓存的查找
+       * 加上一个对本地缓存的查找f
        */
       String bitmapName = imageURL.substring(imageURL.lastIndexOf("/") + 1);
       File cacheDir = new File("/mnt/sdcard/test/");

@@ -48,6 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
+                android:id="@+id/detail_name"
                 android:text="超级管理员"
                 android:textStyle="bold"
                 />
@@ -87,6 +88,7 @@
                 android:layout_height="match_parent"
                 android:text="8888"
                 android:textSize="18dp"
+                android:id="@+id/detail_price"
                 android:textStyle="bold"
                 android:textColor="@color/red"/>
         </LinearLayout>
@@ -94,6 +96,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="商品详情"
+            android:id="@+id/detail_detail"
             android:layout_marginVertical="10dp"
             android:textStyle="bold"
             android:textSize="18dp" />
@@ -101,6 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:id="@+id/detail_image"
             android:src="@drawable/bg"
              />
     </LinearLayout>

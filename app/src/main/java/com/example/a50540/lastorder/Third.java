@@ -138,15 +138,18 @@ public class Third extends Fragment {
         //获取存储在内存中的用户id
         SharedPreferences pref = getActivity().getSharedPreferences("data",MODE_PRIVATE);
         int uid = pref.getInt("uid",0);
+        String name = pref.getString("name",null);
 
         Map<String,Object> map = new HashMap<>();
         map.put("title",m1_title.getText().toString());
         map.put("price",Integer.valueOf(m1_price.getText().toString()));
-        map.put("type",1);  // 分类还没做！！！！！
+        // TODO 分类还没做！！
+        map.put("type",1);
         map.put("phone",m1_phone.getText().toString());
         map.put("detail",m1_detail.getText().toString());
         map.put("pic",fileName);
         map.put("uid",uid);
+        map.put("name",name);
 
         JSONObject jsonObject = new JSONObject(map);
 
@@ -162,7 +165,7 @@ public class Third extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Toast.makeText(getActivity(),response.body().string(),Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(),response.body().string(),Toast.LENGTH_SHORT).show();
             }
         });
     }

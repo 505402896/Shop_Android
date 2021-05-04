@@ -133,11 +133,11 @@ public class First extends Fragment {
                     try {
                         for(int i = 0;i < jsonArray.length(); i++) {
                             Map<String, Object> map = new HashMap<>();
+                            map.put("gid",jsonArray.getJSONObject(i).get("gid"));
                             map.put("pic", jsonArray.getJSONObject(i).get("pic"));
                             map.put("title", jsonArray.getJSONObject(i).get("title"));
                             map.put("price", jsonArray.getJSONObject(i).get("price"));
                             list.add(map);
-                            System.out.println(list);
                         }
                     }catch (JSONException e) {
                         Log.d("",e.getMessage());

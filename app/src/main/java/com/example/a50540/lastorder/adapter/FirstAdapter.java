@@ -73,20 +73,22 @@ public class FirstAdapter extends BaseAdapter {
       });
     if(bitmap == null)
     {
-      holder.good.setImageResource(R.drawable.genshin);
+      holder.good.setImageResource(R.mipmap.m1_addphoto);
     }
     else
     {
       holder.good.setImageBitmap(bitmap);
     }
+    final int gid = Integer.valueOf(list.get(i).get("gid").toString());
     holder.title.setText(list.get(i).get("title").toString());
     holder.price.setText(list.get(i).get("price").toString());
 
     holder.good.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(context,i+"被点击了",Toast.LENGTH_SHORT).show();
+        Toast.makeText(context,i+"被点击了"+gid,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, GoodDetailActivity.class);
+        intent.putExtra("gid",gid);
         context.startActivity(intent);
       }
     });
