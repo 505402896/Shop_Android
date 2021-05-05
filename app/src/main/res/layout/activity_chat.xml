@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:textStyle="bold"
+            android:id="@+id/chat_tv_name"
             android:paddingLeft="-24dp"
             android:text="XXX"
             android:textSize="18dp"/>
@@ -32,48 +33,52 @@
         android:padding="15dp"
         android:orientation="vertical"
         android:layout_weight="1">
-        <LinearLayout
+        <ListView
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="left|center_vertical">
-            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/genshin" />
-            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:paddingHorizontal="10dp"
-                app:qmui_radius="10dp"
-                android:gravity="center"
-                android:textColor="@color/black"
-                app:qmui_borderColor="@color/white"
-                app:qmui_backgroundColor="@color/white"
-                android:text="在吗？"
-                android:background="@color/white" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:gravity="right|center_vertical">
-            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_marginRight="10dp"
-                android:paddingHorizontal="10dp"
-                app:qmui_radius="10dp"
-                android:gravity="center"
-                android:textColor="@color/white"
-                app:qmui_backgroundColor="@color/blue"
-                android:text="不在" />
-            <com.qmuiteam.qmui.widget.QMUIRadiusImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="@drawable/head_icon" />
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:id="@+id/chat_list"/>
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="left|center_vertical">-->
+<!--            <com.qmuiteam.qmui.widget.QMUIRadiusImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/genshin" />-->
+<!--            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:paddingHorizontal="10dp"-->
+<!--                app:qmui_radius="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/black"-->
+<!--                app:qmui_borderColor="@color/white"-->
+<!--                app:qmui_backgroundColor="@color/white"-->
+<!--                android:text="在吗？"-->
+<!--                android:background="@color/white" />-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="right|center_vertical">-->
+<!--            <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:paddingHorizontal="10dp"-->
+<!--                app:qmui_radius="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:textColor="@color/white"-->
+<!--                app:qmui_backgroundColor="@color/blue"-->
+<!--                android:text="不在" />-->
+<!--            <com.qmuiteam.qmui.widget.QMUIRadiusImageView-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:background="@drawable/head_icon" />-->
+<!--        </LinearLayout>-->
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -86,6 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
+            android:id="@+id/chat_et_content"
             android:background="@color/white"
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/btn_chat_send" />

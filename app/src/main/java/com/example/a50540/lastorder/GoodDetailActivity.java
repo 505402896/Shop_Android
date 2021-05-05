@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.a50540.lastorder.util.AsyncBitmapLoader;
 import com.example.a50540.lastorder.util.Common;
 import com.example.a50540.lastorder.util.Result;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,6 +33,9 @@ import okhttp3.Response;
 public class GoodDetailActivity extends AppCompatActivity {
   ImageView btn_return,image;
   TextView tv_name,tv_price,tv_detail;
+  int uid,gid;
+  String name;
+  QMUIRoundButton btn_toChat;
   private AsyncBitmapLoader asyncBitmapLoader;;
 
   @Override
@@ -39,6 +44,7 @@ public class GoodDetailActivity extends AppCompatActivity {
     setContentView(R.layout.activity_item_detail);
     asyncBitmapLoader=new AsyncBitmapLoader();
 
+//    初始化组件
     init();
 
     btn_return.setOnClickListener(new View.OnClickListener() {
@@ -48,12 +54,25 @@ public class GoodDetailActivity extends AppCompatActivity {
       }
     });
 
-    Intent intent = getIntent();
-    int gid = intent.getIntExtra("gid",0);
+    final Intent intent = getIntent();
+    gid = intent.getIntExtra("gid",0);
+
+//    初始化数据
     initData(gid);
+
+    btn_toChat.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent toChat = new Intent(GoodDetailActivity.this,Chat.class);
+        toChat.putExtra("uid", uid);
+        toChat.putExtra("name",name);
+        startActivity(toChat);
+      }
+    });
   }
 
   public void init() {
+    btn_toChat = (QMUIRoundButton)findViewById(R.id.detail_btn_toChat);
     tv_detail = (TextView)findViewById(R.id.detail_detail);
     tv_name = (TextView) findViewById(R.id.detail_name);
     tv_price = (TextView)findViewById(R.id.detail_price);
@@ -104,7 +123,10 @@ public class GoodDetailActivity extends AppCompatActivity {
           Bundle bundle = msg.getData();
           Result result = (Result) bundle.getSerializable("result");
           JSONObject jsonObject = (JSONObject) result.getData();
+
           try {
+            uid = jsonObject.getInt("uid");
+            name = jsonObject.getString("name");
             tv_name.setText(jsonObject.getString("name"));
             tv_price.setText(String.valueOf(jsonObject.getInt("price")));
             tv_detail.setText(jsonObject.getString("detail"));
@@ -119,7 +141,7 @@ public class GoodDetailActivity extends AppCompatActivity {
             });
             if(bitmap == null)
             {
-              image.setImageResource(R.mipmap.m1_addphoto);
+              image.setImageResource(R.mipmap.loading);
             }
             else
             {

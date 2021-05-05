@@ -73,7 +73,7 @@ public class FirstAdapter extends BaseAdapter {
       });
     if(bitmap == null)
     {
-      holder.good.setImageResource(R.mipmap.m1_addphoto);
+      holder.good.setImageResource(R.mipmap.loading);
     }
     else
     {

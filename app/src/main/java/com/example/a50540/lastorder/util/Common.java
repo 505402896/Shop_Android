@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class Common {
   public static final String SERVER_URL = "http://121.196.145.100:8082/api";
-//public static final String SERVER_URL = "http://192.168.2.101:8082/api";
+//public static final String SERVER_URL = "http://192.168.220.190:8082/api";
   public static final String IMAGE_BASE_PATH = "http://121.196.145.100:8080/assets/shop/image/";
 
   public static Map<String,Object> JsonToMap(JSONObject j){

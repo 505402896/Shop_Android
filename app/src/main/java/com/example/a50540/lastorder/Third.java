@@ -140,7 +140,7 @@ public class Third extends Fragment {
         int uid = pref.getInt("uid",0);
         String name = pref.getString("name",null);
 
-        Map<String,Object> map = new HashMap<>();
+        final Map<String,Object> map = new HashMap<>();
         map.put("title",m1_title.getText().toString());
         map.put("price",Integer.valueOf(m1_price.getText().toString()));
         // TODO 分类还没做！！
@@ -165,7 +165,10 @@ public class Third extends Fragment {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-//                Toast.makeText(getActivity(),response.body().string(),Toast.LENGTH_SHORT).show();
+                Message msg = handler.obtainMessage();
+                msg.what = 1;
+                msg.obj = response.body().string();
+                handler.sendMessage(msg);
             }
         });
     }
@@ -213,6 +216,20 @@ public class Third extends Fragment {
         imageButton.setImageBitmap(bitmap);
     }
 
-
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 1:
+                    Toast.makeText(getActivity(),"发布成功",Toast.LENGTH_SHORT).show();
+                    m1_detail.setText("");
+                    m1_phone.setText("");
+                    m1_price.setText("");
+                    m1_title.setText("");
+                    break;
+            }
+        }
+    };
 
 }
