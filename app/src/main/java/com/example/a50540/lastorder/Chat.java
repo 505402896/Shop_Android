@@ -17,8 +17,11 @@ import android.widget.Toast;
 
 import com.example.a50540.lastorder.adapter.ChatAdapter;
 import com.example.a50540.lastorder.util.Common;
+import com.example.a50540.lastorder.util.Result;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -67,7 +70,7 @@ public class Chat extends AppCompatActivity {
     sendId = pref.getInt("uid",0);
 
 //    获取聊天信息
-    getChatRecord();
+//    accept();
 
     btn_return1.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -135,13 +138,45 @@ public class Chat extends AppCompatActivity {
     });
   }
 
-  public void getChatRecord() {
-//    new Thread(new Runnable() {
-//      @Override
-//      public void run() {
-//
-//      }
-//    }).start();
+  public void accept() {
+    new Thread(new Runnable() {
+      @Override
+      public void run() {
+        while (true) {
+          String url = Common.SERVER_URL + "/chat/getMessage?sendId="+sendId+"&acceptId="+acceptId;
+          OkHttpClient okHttpClient = new OkHttpClient();
+          final Request request = new Request.Builder()
+                  .url(url)
+                  .build();
+          Call call = okHttpClient.newCall(request);
+          call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+              Log.d("tag",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+              try {
+                JSONObject jsonObject = new JSONObject(response.body().string());
+
+                Result result = new Result();
+                result.setMessage(jsonObject.getString("message"));
+                result.setData(jsonObject.get("data"));
+                Message msg = handler.obtainMessage();
+                msg.what = 2;
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("result",result);
+                msg.setData(bundle);
+                handler.sendMessage(msg);
+              } catch (JSONException e) {
+                e.printStackTrace();
+              }
+            }
+          });
+        }
+      }
+    }).start();
   }
 
   Handler handler = new Handler(){
@@ -151,6 +186,12 @@ public class Chat extends AppCompatActivity {
       switch (msg.what) {
         case 1:
           Toast.makeText(Chat.this,msg.obj.toString(),Toast.LENGTH_SHORT).show();
+          break;
+        case 2:
+          Bundle bundle = msg.getData();
+          Result result = (Result) bundle.getSerializable("result");
+          JSONArray jsonArray = (JSONArray) result.getData();
+          Toast.makeText(Chat.this,jsonArray.toString(),Toast.LENGTH_SHORT).show();
           break;
       }
     }
