@@ -64,6 +64,7 @@ public class GoodDetailActivity extends AppCompatActivity {
       @Override
       public void onClick(View view) {
         Intent toChat = new Intent(GoodDetailActivity.this,Chat.class);
+//        要聊天人的id
         toChat.putExtra("uid", uid);
         toChat.putExtra("name",name);
         startActivity(toChat);

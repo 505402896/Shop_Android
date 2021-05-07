@@ -70,7 +70,7 @@ public class Chat extends AppCompatActivity {
     sendId = pref.getInt("uid",0);
 
 //    获取聊天信息
-//    accept();
+    accept();
 
     btn_return1.setOnClickListener(new View.OnClickListener() {
       @Override
@@ -98,13 +98,6 @@ public class Chat extends AppCompatActivity {
   private List<Map<String,Object>> getData() {
     list = new ArrayList<Map<String, Object>>();
     map = new HashMap<>();
-    map.put("content","在吗");
-    map.put("position","left");
-    Map<String,Object> map1 = new HashMap<>();
-    map1.put("content","不在");
-    map1.put("position","right");
-    list.add(map);
-    list.add(map1);
     return list;
   }
 
@@ -139,44 +132,37 @@ public class Chat extends AppCompatActivity {
   }
 
   public void accept() {
-    new Thread(new Runnable() {
+    String url = Common.SERVER_URL + "/chat/getMessage?sendId="+sendId+"&acceptId="+acceptId;
+    OkHttpClient okHttpClient = new OkHttpClient();
+    final Request request = new Request.Builder()
+            .url(url)
+            .build();
+    Call call = okHttpClient.newCall(request);
+    call.enqueue(new Callback() {
       @Override
-      public void run() {
-        while (true) {
-          String url = Common.SERVER_URL + "/chat/getMessage?sendId="+sendId+"&acceptId="+acceptId;
-          OkHttpClient okHttpClient = new OkHttpClient();
-          final Request request = new Request.Builder()
-                  .url(url)
-                  .build();
-          Call call = okHttpClient.newCall(request);
-          call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-              Log.d("tag",e.getMessage());
-            }
+      public void onFailure(Call call, IOException e) {
+        Log.d("tag",e.getMessage());
+      }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-              try {
-                JSONObject jsonObject = new JSONObject(response.body().string());
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+        try {
+          JSONObject jsonObject = new JSONObject(response.body().string());
 
-                Result result = new Result();
-                result.setMessage(jsonObject.getString("message"));
-                result.setData(jsonObject.get("data"));
-                Message msg = handler.obtainMessage();
-                msg.what = 2;
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("result",result);
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-              } catch (JSONException e) {
-                e.printStackTrace();
-              }
-            }
-          });
+          Result result = new Result();
+          result.setMessage(jsonObject.getString("message"));
+          result.setData(jsonObject.get("data"));
+          Message msg = handler.obtainMessage();
+          msg.what = 2;
+          Bundle bundle = new Bundle();
+          bundle.putSerializable("result",result);
+          msg.setData(bundle);
+          handler.sendMessage(msg);
+        } catch (JSONException e) {
+          e.printStackTrace();
         }
       }
-    }).start();
+    });
   }
 
   Handler handler = new Handler(){
@@ -185,13 +171,39 @@ public class Chat extends AppCompatActivity {
       super.handleMessage(msg);
       switch (msg.what) {
         case 1:
-          Toast.makeText(Chat.this,msg.obj.toString(),Toast.LENGTH_SHORT).show();
+          map = new HashMap<>();
+          map.put("position","right");
+          map.put("content",et_content.getText().toString());
+          list.add(map);
+          chatAdapter.notifyDataSetChanged();
+          et_content.setText("");
           break;
         case 2:
           Bundle bundle = msg.getData();
           Result result = (Result) bundle.getSerializable("result");
           JSONArray jsonArray = (JSONArray) result.getData();
-          Toast.makeText(Chat.this,jsonArray.toString(),Toast.LENGTH_SHORT).show();
+          System.out.println(jsonArray.toString());
+          try {
+            for (int i = 0; i < jsonArray.length(); i++) {
+              if(jsonArray.getJSONObject(i).get("sendId").equals(sendId)) {
+//                判断是否是自己发出
+                map = new HashMap<>();
+                map.put("position","right");
+//                map.put("image",R.drawable.genshin);
+                map.put("content",jsonArray.getJSONObject(i).get("content"));
+                list.add(map);
+              } else {
+                map = new HashMap<>();
+                map.put("position","left");
+//                map.put("image",R.drawable.head_icon);
+                map.put("content",jsonArray.getJSONObject(i).get("content"));
+                list.add(map);
+              }
+            }
+          } catch (JSONException e) {
+            e.printStackTrace();
+          }
+          chatAdapter.notifyDataSetChanged();
           break;
       }
     }

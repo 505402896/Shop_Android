@@ -50,6 +50,7 @@ public class ChatAdapter extends BaseAdapter {
       view = inflater.inflate(R.layout.chat_list, viewGroup, false);
       holder.head = (QMUIRadiusImageView) view.findViewById(R.id.chat_list_head_icon);
       holder.msg = (QMUIRoundButton) view.findViewById(R.id.chat_list_msg);
+      view.setTag(holder);
     } else {
       holder = (ViewHolder) view.getTag();
     }
@@ -65,11 +66,12 @@ public class ChatAdapter extends BaseAdapter {
       holder.head.setImageResource(R.drawable.genshin);
       RelativeLayout.LayoutParams msg_right = (RelativeLayout.LayoutParams) holder.msg.getLayoutParams();
       msg_right.addRule(RelativeLayout.LEFT_OF,R.id.chat_list_head_icon);
-
 //      holder.msg.setTextColor(Color.argb(1,30,111,255));
-
     }
-    holder.msg.setText(list.get(i).get("content").toString());
+    if(holder.head != null) {
+//      holder.head.setImageResource(Integer.valueOf(list.get(i).get("image")+""));
+      holder.msg.setText(list.get(i).get("content").toString());
+    }
     return view;
   }
 
