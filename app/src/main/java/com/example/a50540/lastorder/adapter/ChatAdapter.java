@@ -1,6 +1,7 @@
 package com.example.a50540.lastorder.adapter;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.example.a50540.lastorder.R;
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButtonDrawable;
 
 import java.util.List;
 import java.util.Map;
@@ -66,6 +68,10 @@ public class ChatAdapter extends BaseAdapter {
       holder.head.setImageResource(R.drawable.genshin);
       RelativeLayout.LayoutParams msg_right = (RelativeLayout.LayoutParams) holder.msg.getLayoutParams();
       msg_right.addRule(RelativeLayout.LEFT_OF,R.id.chat_list_head_icon);
+      QMUIRoundButtonDrawable qmuiRoundButtonDrawable = (QMUIRoundButtonDrawable) holder.msg.getBackground();
+      ColorStateList colorStateList=ColorStateList.valueOf(context.getResources().getColor(R.color.blue));
+      qmuiRoundButtonDrawable.setBgData(colorStateList);
+      holder.msg.setTextColor(Color.WHITE);
 //      holder.msg.setTextColor(Color.argb(1,30,111,255));
     }
     if(holder.head != null) {

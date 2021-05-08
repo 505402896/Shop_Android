@@ -22,7 +22,7 @@
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
                 app:cardCornerRadius="20dp"
-                android:id="@+id/btn_jump">
+                android:id="@+id/second_btn_xxyp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,7 +49,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:id="@+id/second_btn_shyp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -83,7 +84,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:id="@+id/second_btn_typy">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -110,7 +112,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:id="@+id/second_btn_dzsb">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -144,7 +147,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:id="@+id/second_btn_spfl">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -171,7 +175,8 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 app:cardElevation="10dp"
-                app:cardCornerRadius="20dp">
+                app:cardCornerRadius="20dp"
+                android:id="@+id/second_btn_hfyp">
 
                 <LinearLayout
                     android:layout_width="match_parent"

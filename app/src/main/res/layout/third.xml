@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="340dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal">
@@ -50,21 +50,83 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center_vertical"
             android:layout_marginLeft="10dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:textStyle="bold"
                 android:textSize="20dp"
                 android:text="类别: " />
-            <Spinner
-                android:id="@+id/m1_classify"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:textAlignment="center">
-            </Spinner>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_xxyp"
+                        android:text="学习用品"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:layout_margin="5dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_shyp"
+                        android:text="生活用品"
+                        android:layout_margin="5dp"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_tyyp"
+                        android:text="体育用品"
+                        android:layout_margin="5dp"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_dzsb"
+                        android:text="电子设备"
+                        android:layout_margin="5dp"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_spfl"
+                        android:text="饰品分类"
+                        android:layout_margin="5dp"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                    <com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/third_btn_hfyp"
+                        android:text="护肤用品"
+                        android:layout_margin="5dp"
+                        app:qmui_radius="10dp"
+                        android:textSize="12dp"
+                        android:paddingHorizontal="15dp"
+                        android:paddingVertical="10dp" />
+                </LinearLayout>
+            </HorizontalScrollView>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

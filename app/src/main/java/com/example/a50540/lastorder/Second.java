@@ -43,22 +43,72 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class Second extends Fragment {
-    CardView btn_jum;
+    CardView btn_study,btn_live,btn_PE,btn_tech,btn_food,btn_make;;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.second,container,false);
-        btn_jum = (CardView)view.findViewById(R.id.btn_jump);
-        btn_jum.setOnClickListener(new View.OnClickListener() {
+        btn_study = (CardView)view.findViewById(R.id.second_btn_xxyp);
+        btn_live = (CardView)view.findViewById(R.id.second_btn_shyp);
+        btn_PE = (CardView)view.findViewById(R.id.second_btn_typy);
+        btn_tech = (CardView)view.findViewById(R.id.second_btn_dzsb);
+        btn_food = (CardView)view.findViewById(R.id.second_btn_spfl);
+        btn_make = (CardView)view.findViewById(R.id.second_btn_hfyp);
+
+        btn_study.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 1);
                 startActivity(intent);
             }
         });
 
+        btn_live.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 2);
+                startActivity(intent);
+            }
+        });
 
+        btn_PE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 3);
+                startActivity(intent);
+            }
+        });
+
+        btn_tech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 4);
+                startActivity(intent);
+            }
+        });
+
+        btn_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 5);
+                startActivity(intent);
+            }
+        });
+
+        btn_make.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),ItemList.class);
+                intent.putExtra("type", 6);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

@@ -7,9 +7,11 @@ import android.content.ContentUris;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,6 +39,7 @@ import android.widget.Toast;
 import com.example.a50540.lastorder.adapter.FirstAdapter;
 import com.example.a50540.lastorder.util.Common;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
+import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButtonDrawable;
 
 import org.json.JSONObject;
 
@@ -64,12 +67,14 @@ import static android.content.Context.MODE_PRIVATE;
 public class Third extends Fragment {
 
     ImageView imageButton;
-
+    QMUIRoundButton btn_study,btn_live,btn_PE,btn_tech,btn_food,btn_make;
     EditText m1_title,m1_price,m1_phone,m1_detail;
     QMUIRoundButton third_btn_publish;
     public byte[] image;
+    int classify = 0;   // 1:学习用品 2:生活用品 3:体育用品 4:电子设备 5:食品分类 6:护士用品
     String path = "";
     String fileName = "";
+    List<QMUIRoundButton> list = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -96,10 +101,85 @@ public class Third extends Fragment {
         m1_price = (EditText)view.findViewById(R.id.m1_price);
         m1_detail = (EditText)view.findViewById(R.id.m1_detail);
         m1_phone = (EditText)view.findViewById(R.id.m1_phone);
+        btn_food = (QMUIRoundButton)view.findViewById(R.id.third_btn_spfl);
+        btn_live = (QMUIRoundButton)view.findViewById(R.id.third_btn_shyp);
+        btn_make = (QMUIRoundButton)view.findViewById(R.id.third_btn_hfyp);
+        btn_tech = (QMUIRoundButton)view.findViewById(R.id.third_btn_dzsb);
+        btn_PE = (QMUIRoundButton)view.findViewById(R.id.third_btn_tyyp);
+        btn_study = (QMUIRoundButton)view.findViewById(R.id.third_btn_xxyp);
 
+        list.add(btn_study);
+        list.add(btn_live);
+        list.add(btn_PE);
+        list.add(btn_tech);
+        list.add(btn_food);
+        list.add(btn_make);
 
+        btn_study.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 1;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_study);
+            }
+        });
 
+        btn_live.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 2;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_live);
+            }
+        });
 
+        btn_PE.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 3;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_PE);
+            }
+        });
+
+        btn_tech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 4;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_tech);
+            }
+        });
+
+        btn_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 5;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_food);
+            }
+        });
+
+        btn_make.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                classify = 6;
+                for(QMUIRoundButton button : list) {
+                    changeWhite(button);
+                }
+                changeBlue(btn_make);
+            }
+        });
 
         third_btn_publish = (QMUIRoundButton)view.findViewById(R.id.third_btn_publish);
         third_btn_publish.setOnClickListener(new View.OnClickListener() {
@@ -144,7 +224,7 @@ public class Third extends Fragment {
         map.put("title",m1_title.getText().toString());
         map.put("price",Integer.valueOf(m1_price.getText().toString()));
         // TODO 分类还没做！！
-        map.put("type",1);
+        map.put("type",classify);
         map.put("phone",m1_phone.getText().toString());
         map.put("detail",m1_detail.getText().toString());
         map.put("pic",fileName);
@@ -231,5 +311,19 @@ public class Third extends Fragment {
             }
         }
     };
+
+    public void changeBlue(QMUIRoundButton button) {
+        QMUIRoundButtonDrawable qmuiRoundButtonDrawable = (QMUIRoundButtonDrawable) button.getBackground();
+        ColorStateList colorStateList=ColorStateList.valueOf(getContext().getResources().getColor(R.color.blue));
+        qmuiRoundButtonDrawable.setBgData(colorStateList);
+        button.setTextColor(Color.WHITE);
+    }
+
+    public void changeWhite(QMUIRoundButton button) {
+        QMUIRoundButtonDrawable qmuiRoundButtonDrawable = (QMUIRoundButtonDrawable) button.getBackground();
+        ColorStateList colorStateList=ColorStateList.valueOf(getContext().getResources().getColor(R.color.white));
+        qmuiRoundButtonDrawable.setBgData(colorStateList);
+        button.setTextColor(Color.rgb(30,111,255));
+    }
 
 }
