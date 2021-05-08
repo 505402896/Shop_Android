@@ -10,7 +10,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,11 +34,13 @@ import okhttp3.Response;
 
 public class GoodDetailActivity extends AppCompatActivity {
   ImageView btn_return,image;
-  TextView tv_name,tv_price,tv_detail;
+  TextView tv_name,tv_price,tv_detail,tv_type;
   int uid,gid;
   String name;
-  QMUIRoundButton btn_toChat;
-  private AsyncBitmapLoader asyncBitmapLoader;;
+  QMUIRoundButton btn_toChat,btn_comment;
+  private AsyncBitmapLoader asyncBitmapLoader;
+  LinearLayout btn_toComment;
+  EditText et_comment;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,10 +74,24 @@ public class GoodDetailActivity extends AppCompatActivity {
         startActivity(toChat);
       }
     });
+
+    btn_toComment.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        et_comment.setVisibility(View.VISIBLE);
+        btn_comment.setVisibility(View.VISIBLE);
+        btn_toChat.setVisibility(View.INVISIBLE);
+        btn_toComment.setVisibility(View.INVISIBLE);
+      }
+    });
   }
 
   public void init() {
+    et_comment = (EditText)findViewById(R.id.detail_et_comment);
+    btn_comment = (QMUIRoundButton)findViewById(R.id.detail_btn_comment);
+    btn_toComment = (LinearLayout)findViewById(R.id.detail_btn_toComment);
     btn_toChat = (QMUIRoundButton)findViewById(R.id.detail_btn_toChat);
+    tv_type = (TextView)findViewById(R.id.detail_classify);
     tv_detail = (TextView)findViewById(R.id.detail_detail);
     tv_name = (TextView) findViewById(R.id.detail_name);
     tv_price = (TextView)findViewById(R.id.detail_price);
@@ -131,6 +149,26 @@ public class GoodDetailActivity extends AppCompatActivity {
             tv_name.setText(jsonObject.getString("name"));
             tv_price.setText(String.valueOf(jsonObject.getInt("price")));
             tv_detail.setText(jsonObject.getString("detail"));
+            switch (jsonObject.getInt("type")){
+              case 1:
+                tv_type.setText("学习用品");
+                break;
+              case 2:
+                tv_type.setText("生活用品");
+                break;
+              case 3:
+                tv_type.setText("体育用品");
+                break;
+              case 4:
+                tv_type.setText("电子设备");
+                break;
+              case 5:
+                tv_type.setText("食品分类");
+                break;
+              case 6:
+                tv_type.setText("护士用品");
+                break;
+            }
 
             String imageURL = Common.IMAGE_BASE_PATH + jsonObject.getString("pic");
             Bitmap bitmap=asyncBitmapLoader.loadBitmap(image, imageURL, new AsyncBitmapLoader.ImageCallBack() {
