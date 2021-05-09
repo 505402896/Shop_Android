@@ -49,6 +49,7 @@
         <activity android:name=".ItemList" />
         <activity android:name=".GoodDetailActivity" />
         <activity android:name=".Chat" />
+        <activity android:name=".MyGood" />
     </application>
 
 </manifest>

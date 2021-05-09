@@ -18,6 +18,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Fifth extends Fragment {
 
   TextView tv_username,tv_name;
+  LinearLayout btn_my_good;
 
   @Nullable
   @Override
@@ -31,6 +32,16 @@ public class Fifth extends Fragment {
     String info = "账号："+username;
     tv_username.setText(info);
     tv_name.setText(name);
+
+    btn_my_good = (LinearLayout) view.findViewById(R.id.btn_my_good);
+
+    btn_my_good.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(getActivity(),MyGood.class);
+        startActivity(intent);
+      }
+    });
     return view;
   }
 
