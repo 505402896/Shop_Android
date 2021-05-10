@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.a50540.lastorder.GoodDetailActivity;
 import com.example.a50540.lastorder.R;
 import com.example.a50540.lastorder.util.AsyncBitmapLoader;

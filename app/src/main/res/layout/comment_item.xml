@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="15dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <com.qmuiteam.qmui.widget.QMUIRadiusImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/genshin"
+            android:id="@+id/comment_img"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户名"
+            android:id="@+id/comment_name"
+            android:layout_toRightOf="@id/comment_img"
+            android:layout_marginLeft="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2021-05-10 10:55"
+            android:id="@+id/comment_time"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="评论内容"
+        android:id="@+id/comment_content"
+        android:layout_marginLeft="42dp" />
+</LinearLayout>

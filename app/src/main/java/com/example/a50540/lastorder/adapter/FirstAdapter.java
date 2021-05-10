@@ -86,7 +86,6 @@ public class FirstAdapter extends BaseAdapter {
     holder.good.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Toast.makeText(context,i+"被点击了"+gid,Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, GoodDetailActivity.class);
         intent.putExtra("gid",gid);
         context.startActivity(intent);

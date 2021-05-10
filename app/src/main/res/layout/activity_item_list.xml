@@ -50,10 +50,6 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:orientation="vertical">
-<!--            <ListView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                android:id="@+id/classify_list" />-->
             <com.example.a50540.lastorder.MyListView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
