@@ -75,6 +75,7 @@
             android:layout_width="180dp"
             android:layout_height="100dp"
             android:orientation="vertical"
+            android:id="@+id/fifth_btn_update_password"
             android:layout_alignParentRight="true"
             android:background="@color/light_grey"
             android:layout_gravity="right"
@@ -101,6 +102,7 @@
             android:layout_height="100dp"
             android:layout_alignParentLeft="true"
             android:background="@color/light_grey"
+            android:id="@+id/fifth_btn_userinfo"
             android:orientation="vertical"
             android:padding="15dp">
             <ImageView
@@ -143,6 +145,7 @@
             android:layout_width="180dp"
             android:layout_height="100dp"
             android:orientation="vertical"
+            android:id="@+id/fifth_btn_logout"
             android:layout_alignParentLeft="true"
             android:background="@color/light_grey"
             android:layout_gravity="right"

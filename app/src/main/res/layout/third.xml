@@ -207,7 +207,6 @@
                 android:text="发布"
                 android:id="@+id/third_btn_publish"
                 app:qmui_radius="1dp"
-
                 app:qmui_backgroundColor="@color/blue"
                 android:textColor="@color/white"/>
         </LinearLayout>

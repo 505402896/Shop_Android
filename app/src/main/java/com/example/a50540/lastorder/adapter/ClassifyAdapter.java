@@ -53,17 +53,18 @@ public class ClassifyAdapter extends BaseAdapter {
   public View getView(int position, View convertView, ViewGroup parent) {
     LayoutInflater inflater = LayoutInflater.from(context);
     ViewHolder holder = new ViewHolder();
+    String imageURL = Common.IMAGE_BASE_PATH + list.get(position).get("pic").toString();
     if (convertView == null) {
       convertView = inflater.inflate(R.layout.classify_item, parent, false);
       holder.img = (AppCompatImageView) convertView.findViewById(R.id.classify_img);
       holder.title = (TextView) convertView.findViewById(R.id.classify_title);
       holder.price = (TextView) convertView.findViewById(R.id.classify_price);
+      holder.img.setTag(imageURL);
       convertView.setTag(holder);
     } else {
       holder = (ViewHolder) convertView.getTag();
     }
 
-    String imageURL = Common.IMAGE_BASE_PATH + list.get(position).get("pic").toString();
     Bitmap bitmap=asyncBitmapLoader.loadBitmap(holder.img, imageURL, new AsyncBitmapLoader.ImageCallBack() {
       @Override
       public void imageLoad(ImageView imageView, Bitmap bitmap) {
