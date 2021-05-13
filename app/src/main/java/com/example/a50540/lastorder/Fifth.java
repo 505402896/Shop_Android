@@ -70,6 +70,7 @@ public class Fifth extends Fragment {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(getActivity(),UserInfoActivity.class);
+        intent.putExtra("uid",uid);
         startActivity(intent);
       }
     });

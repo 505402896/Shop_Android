@@ -193,12 +193,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                     Result result = new Result();
                     result.setCode(jsonObject.getInt("code"));
                     result.setMessage(jsonObject.getString("message"));
-                    result.setData(jsonObject.getJSONObject("data").getInt("uid"));
                     Bundle bundle = new Bundle();
+                    msg.what = 1;
+                    if (result.getCode() == 200) {
+                        result.setData(jsonObject.getJSONObject("data").getInt("uid"));
+                        msg.obj = jsonObject.getJSONObject("data").getString("name");
+                    }
                     bundle.putSerializable("result",result);
                     msg.setData(bundle);
-                    msg.what = 1;
-                    msg.obj = jsonObject.getJSONObject("data").getString("name");
                     handler.sendMessage(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();

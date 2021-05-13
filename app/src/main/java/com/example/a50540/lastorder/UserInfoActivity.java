@@ -1,5 +1,7 @@
 package com.example.a50540.lastorder;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,8 +15,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.a50540.lastorder.util.Common;
+import com.example.a50540.lastorder.util.Result;
 import com.qmuiteam.qmui.widget.roundwidget.QMUIRoundButton;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -34,6 +39,8 @@ public class UserInfoActivity extends AppCompatActivity {
   QMUIRoundButton btn_update;
   TextView tv_name,tv_username;
   EditText et_dept,et_qq,et_address,et_phone;
+  int uid;
+  String username,name;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,6 +48,13 @@ public class UserInfoActivity extends AppCompatActivity {
     setContentView(R.layout.activity_userinfo);
     init();
 
+    SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+    uid = pref.getInt("uid",0);
+    name = pref.getString("name", null);
+    username = pref.getString("username", null);
+    tv_name.setText(name);
+    tv_username.setText(username);
+    initData();
     btn_return.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -67,8 +81,43 @@ public class UserInfoActivity extends AppCompatActivity {
     et_qq = (EditText)findViewById(R.id.userinfo_et_qq);
   }
 
+  public void initData() {
+    String url = Common.SERVER_URL +"/user/getUserInfo?uid="+uid;
+
+    final Request request = new Request.Builder().url(url).build();
+    OkHttpClient okHttpClient = new OkHttpClient();
+    Call call = okHttpClient.newCall(request);
+    call.enqueue(new Callback() {
+      @Override
+      public void onFailure(Call call, IOException e) {
+        Log.d("tag",e.getMessage());
+      }
+
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+        try {
+          JSONObject jsonObject = new JSONObject(response.body().string());
+
+          Result result = new Result();
+          result.setCode(jsonObject.getInt("code"));
+          result.setMessage(jsonObject.getString("message"));
+          result.setData(jsonObject.get("data"));
+          Message msg = handler.obtainMessage();
+          msg.what = 2;
+          Bundle bundle = new Bundle();
+          bundle.putSerializable("result",result);
+          msg.setData(bundle);
+          handler.sendMessage(msg);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
+      }
+    });
+  }
+
   private void update() {
     Map<String,Object> map = new HashMap<>();
+    map.put("uid",uid);
     map.put("dept", et_dept.getText().toString());
     map.put("phone", et_phone.getText().toString());
     map.put("qqNumber", et_qq.getText().toString());
@@ -107,6 +156,19 @@ public class UserInfoActivity extends AppCompatActivity {
         case 1:
           Toast.makeText(UserInfoActivity.this,"修改成功",Toast.LENGTH_SHORT).show();
           finish();
+          break;
+        case 2:
+          Bundle bundle = msg.getData();
+          Result result = (Result) bundle.getSerializable("result");
+          JSONObject jsonObject = (JSONObject) result.getData();
+          try {
+            et_dept.setText(jsonObject.getString("dept"));
+            et_address.setText(jsonObject.getString("address"));
+            et_phone.setText(jsonObject.getString("phone"));
+            et_qq.setText(jsonObject.getString("qqNumber"));
+          } catch (JSONException e) {
+            e.printStackTrace();
+          }
           break;
       }
     }

@@ -50,8 +50,9 @@
         <RelativeLayout
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="15dp">
+            android:layout_height="60dp"
+            android:padding="15dp"
+            >
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -64,12 +65,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="admin"
+                android:layout_centerVertical="true"
                 android:id="@+id/userinfo_tv_username"
                 android:layout_toRightOf="@+id/userinfo_tv_username_title"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:padding="15dp">
             <TextView
                 android:layout_width="100dp"
@@ -83,13 +85,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="王子杰"
+                android:layout_centerVertical="true"
                 android:id="@+id/userinfo_tv_name"
                 android:layout_toRightOf="@+id/userinfo_tv_name_title"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:padding="15dp">
+            android:layout_height="60dp"
+            android:paddingHorizontal="15dp">
             <TextView
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
@@ -102,12 +105,13 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/userinfo_et_dept"
+                android:textSize="15dp"
                 android:layout_toRightOf="@+id/userinfo_tv_dept_title"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:padding="15dp">
+            android:paddingHorizontal="15dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -119,13 +123,14 @@
             <EditText
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:textSize="15dp"
                 android:id="@+id/userinfo_et_phone"
                 android:layout_toRightOf="@+id/userinfo_tv_phone_title"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:padding="15dp">
+            android:paddingHorizontal="15dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -138,12 +143,13 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/userinfo_et_qq"
+                android:textSize="15dp"
                 android:layout_toRightOf="@+id/userinfo_tv_qq_title"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:padding="15dp">
+            android:paddingHorizontal="15dp">
         <TextView
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -156,6 +162,7 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/userinfo_et_address"
+                android:textSize="15dp"
                 android:layout_toRightOf="@+id/userinfo_tv_address_title"/>
         </RelativeLayout>
     </LinearLayout>

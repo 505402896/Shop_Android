@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_return_black"
-            android:id="@+id/chat_btn_return1"/>
+            android:id="@+id/my_good_btn_return"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

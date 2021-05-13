@@ -7,6 +7,8 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.a50540.lastorder.adapter.MyGoodAdpter;
@@ -34,6 +36,7 @@ public class MyGood extends AppCompatActivity {
   private Map<String,Object> map;
   private List<Map<String,Object>> list;
   MyGoodAdpter myGoodAdpter;
+  ImageView btn_return;
   int uid;
 
   @Override
@@ -50,10 +53,18 @@ public class MyGood extends AppCompatActivity {
     listView.setAdapter(myGoodAdpter);
 
     initData();
+
+    btn_return.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        finish();
+      }
+    });
   }
 
   private void init() {
     listView = (ListView) findViewById(R.id.my_good_list);
+    btn_return = (ImageView) findViewById(R.id.my_good_btn_return);
   }
 
   private List<Map<String,Object>> getData() {
