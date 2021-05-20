@@ -15,32 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-
-import com.suke.widget.SwitchButton;
-
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-
-import cn.kingvcn.kv_wsn.ZigBeeAPI;
-
-import cn.kingvcn.kv_wsn.bean.Relay;
-import cn.kingvcn.kv_wsn.response.onAtmosphericPressureResponse;
-import cn.kingvcn.kv_wsn.response.onCurtainStateResponse;
-import cn.kingvcn.kv_wsn.response.onFWDDSDataResponse;
-import cn.kingvcn.kv_wsn.response.onPm25Response;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class Second extends Fragment {
     CardView btn_study,btn_live,btn_PE,btn_tech,btn_food,btn_make;;

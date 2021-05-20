@@ -63,17 +63,7 @@ public class First extends Fragment {
         first_btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                List<Map<String,Object>> searchList = new ArrayList<>();
-                for(Map<String,Object> map : list) {
-                    if(first_et_search.getText().toString().equals(map.get("title"))) {
-                        // 当搜索结果不为空时  返回搜索数据
-                        list.clear();
-                        list.add(map);
-                    } else {
-                        Toast.makeText(getActivity(),"暂无搜索结果",Toast.LENGTH_SHORT).show();
-                    }
-                }
-                firstAdapter.notifyDataSetChanged();
+                searchData();
             }
         });
         return view;
@@ -83,6 +73,42 @@ public class First extends Fragment {
         list = new ArrayList<Map<String, Object>>();
         map = new HashMap<>();
         return list;
+    }
+
+    private void searchData() {
+        String url = Common.SERVER_URL + "/goods/getGoodsByTitle?title="+first_et_search.getText().toString();
+        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url(url)
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.d("tag",e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                try {
+                    JSONObject jsonObject = new JSONObject(response.body().string());
+
+                    Result result = new Result();
+                    result.setCode(jsonObject.getInt("code"));
+                    result.setMessage(jsonObject.getString("message"));
+                    result.setData(jsonObject.get("data"));
+
+                    Message msg = handler.obtainMessage();
+                    msg.what = 2;
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("result",result);
+                    msg.setData(bundle);
+                    handler.sendMessage(msg);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initData() {
@@ -125,11 +151,28 @@ public class First extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            Bundle bundle = msg.getData();
+            Result result = (Result) bundle.getSerializable("result");
+            JSONArray jsonArray = (JSONArray) result.getData();
             switch (msg.what){
                 case 1:
-                    Bundle bundle = msg.getData();
-                    Result result = (Result) bundle.getSerializable("result");
-                    JSONArray jsonArray = (JSONArray) result.getData();
+
+                    try {
+                        for(int i = 0;i < jsonArray.length(); i++) {
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("gid",jsonArray.getJSONObject(i).get("gid"));
+                            map.put("pic", jsonArray.getJSONObject(i).get("pic"));
+                            map.put("title", jsonArray.getJSONObject(i).get("title"));
+                            map.put("price", jsonArray.getJSONObject(i).get("price"));
+                            list.add(map);
+                        }
+                    }catch (JSONException e) {
+                        Log.d("",e.getMessage());
+                    }
+                    firstAdapter.notifyDataSetChanged();
+                    break;
+                case 2:
+                    list.clear();
                     try {
                         for(int i = 0;i < jsonArray.length(); i++) {
                             Map<String, Object> map = new HashMap<>();

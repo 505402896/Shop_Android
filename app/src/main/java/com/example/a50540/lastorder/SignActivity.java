@@ -106,15 +106,7 @@ public class SignActivity extends Activity {
             super.handleMessage(msg);
             switch (msg.what){
                 case 1:
-//                    if (msg.obj.toString().equals("注册成功")){
-//                        Toast.makeText(SignActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(SignActivity.this,LoginActivity.class);
-//                        intent.putExtra("username",username);
-//                        intent.putExtra("password",password);
-//                        startActivity(intent);
-//                        finish();
-//                    }else
-                        Toast.makeText(SignActivity.this,msg.obj.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SignActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                     break;
             }
         }

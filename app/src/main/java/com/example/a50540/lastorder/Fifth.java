@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Fifth extends Fragment {
 
   TextView tv_username,tv_name;
-  LinearLayout btn_my_good,btn_update_password,btn_logout,btn_userinfo;
+  RelativeLayout btn_my_good,btn_update_password,btn_logout,btn_userinfo,btn_about_us;
   String username,name;
   int uid;
 
@@ -61,10 +62,19 @@ public class Fifth extends Fragment {
     tv_username.setText(info);
     tv_name.setText(name);
 
-    btn_my_good = (LinearLayout) view.findViewById(R.id.btn_my_good);
-    btn_update_password = (LinearLayout) view.findViewById(R.id.fifth_btn_update_password);
-    btn_logout = (LinearLayout) view.findViewById(R.id.fifth_btn_logout);
-    btn_userinfo = (LinearLayout)view.findViewById(R.id.fifth_btn_userinfo);
+    btn_my_good = (RelativeLayout) view.findViewById(R.id.btn_my_good);
+    btn_update_password = (RelativeLayout) view.findViewById(R.id.fifth_btn_update_password);
+    btn_logout = (RelativeLayout) view.findViewById(R.id.fifth_btn_logout);
+    btn_userinfo = (RelativeLayout) view.findViewById(R.id.fifth_btn_userinfo);
+    btn_about_us = (RelativeLayout)view.findViewById(R.id.fifth_btn_about_us);
+
+    btn_about_us.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(getActivity(),AboutUsActivity.class);
+        startActivity(intent);
+      }
+    });
 
     btn_userinfo.setOnClickListener(new View.OnClickListener() {
       @Override

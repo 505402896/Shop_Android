@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="30dp"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_return_black"
+            android:id="@+id/about_us_btn_return"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:paddingLeft="-24dp"
+            android:text="关于我们"
+            android:textSize="18dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="      ZJOU校园跳蚤平台自话      "
+            android:textColor="@color/blue"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:gravity="end">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:text="ABOUT US         "
+            android:textSize="18dp"
+            android:background="@color/blue"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="30dp"
+                android:text="    随着互联网购物的便利，学生手中闲置商品的数量也在增加。
+通过将闲置商品进行二手交易转卖出去，不仅提高了物品的使用率，还解决了部分学生的经济压力。
+ZJOU校园跳蚤平台致力于帮助学生提高闲置商品的交易率，即避免了二手商品交易群的不直观以及繁琐，又避免了线下跳蚤市场的局限性。
+我们是一个便于查找、更具目标性的闲置商品交易平台，用简便的方式进行高效的商品交易。
+我们全心全意为同学们服务，通过这个平台让你手中的闲置商品“活起来”吧！ "
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:textStyle="normal"/>
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

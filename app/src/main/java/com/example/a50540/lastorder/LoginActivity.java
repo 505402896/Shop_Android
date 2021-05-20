@@ -91,7 +91,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     // UI references.
     private AutoCompleteTextView tv_user;
     private EditText et_pwd;
-    private TextView tv_forget;
     private View mProgressView;
     private View mLoginFormView;
 
@@ -103,18 +102,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         tv_user = (AutoCompleteTextView) findViewById(R.id.tv_user);
         populateAutoComplete();
-        
-        tv_forget = (TextView)findViewById(R.id.tv_forget);
-        tv_forget.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this,ForgetActivity.class);
-                intent.putExtra("username",tv_user.getText().toString().trim());
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
-            }
-        });
+
         old_user = getIntent().getStringExtra("old_user");
         user_sign = getIntent().getStringExtra("username");
         pwd_sign = getIntent().getStringExtra("password");

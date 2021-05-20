@@ -7,7 +7,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
     android:backgroundTint="@color/grey">
-    <android.support.v7.widget.AppCompatImageView
+    <com.android.volley.toolbox.NetworkImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"

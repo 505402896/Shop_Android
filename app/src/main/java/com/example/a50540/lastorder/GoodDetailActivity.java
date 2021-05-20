@@ -273,7 +273,7 @@ public class GoodDetailActivity extends AppCompatActivity {
                 tv_type.setText("食品分类");
                 break;
               case 6:
-                tv_type.setText("护士用品");
+                tv_type.setText("护肤用品");
                 break;
             }
 
@@ -298,6 +298,7 @@ public class GoodDetailActivity extends AppCompatActivity {
           }
           break;
         case 2:
+          list.clear();
           Bundle bundle1 = msg.getData();
           Result comment = (Result) bundle1.getSerializable("result");
 //          获取数据并转成JSON数组 进行循环  每个循环就是一条评论 将评论添加到map  再将map添加到list中
@@ -317,7 +318,7 @@ public class GoodDetailActivity extends AppCompatActivity {
           commentAdapter.notifyDataSetChanged();
           break;
         case 3:
-          Toast.makeText(GoodDetailActivity.this,msg.obj.toString(),Toast.LENGTH_SHORT).show();
+          Toast.makeText(GoodDetailActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
           initComment(gid);
           et_comment.setText("");
           break;
